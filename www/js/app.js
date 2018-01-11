@@ -72,9 +72,9 @@ app.controller('SoundBoardCtrl', function ($scope, $window) {
     }
 
     if($window.cordova){
-      ionic.platform.ready(function(){
+      ionic.Platform.ready(function(){
         $scope.media = $window.Media(sound.file);
-        $scope.play();
+        $scope.media.play();
       });
     }else{
       $scope.media = new Audio();
