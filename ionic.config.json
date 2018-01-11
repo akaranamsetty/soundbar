@@ -1,14 +1,18 @@
 {
   "name": "ionic-app-base",
-  "app_id": "",
+  "app_id": "b4eb8de9",
   "type": "ionic1",
   "integrations": {
-    "gulp": {}
+    "gulp": {},
+    "cordova": {}
   },
   "watchPatterns": [
     "scss/**/*",
     "www/**/*",
     "!www/lib/**/*",
     "!www/**/*.map"
-  ]
+  ],
+  "gulp": {
+    "enabled": false
+  }
 }

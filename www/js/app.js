@@ -13,7 +13,7 @@ app.run(function ($ionicPlatform) {
 	});
 });
 
-app.controller('SoundBoardCtrl', function ($scope) {
+app.controller('SoundBoardCtrl', function ($scope, $window) {
 
 	$scope.media = null;
 
@@ -67,6 +67,22 @@ app.controller('SoundBoardCtrl', function ($scope) {
 	};
 
 	$scope.play = function (sound) {
+	  if($scope.media){
+	    $scope.media.pause();
+    }
+
+    if($window.cordova){
+      ionic.platform.ready(function(){
+        $scope.media = $window.Media(sound.file);
+        $scope.play();
+      });
+    }else{
+      $scope.media = new Audio();
+      $scope.media.src = sound.file;
+      $scope.media.load();
+      $scope.media.play();
+    }
+
 	};
 });
 
