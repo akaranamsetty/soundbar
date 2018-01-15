@@ -88,5 +88,14 @@ app.controller('SoundBoardCtrl', function ($scope, $window) {
     }
 
 	};
+
+	$scope.removeFromList = function(index){
+	  $scope.model.sounds.splice(index, 1);
+  }
+
+  $scope.reorderList = function(sound, fromIndex, toIndex){
+    $scope.model.sounds.splice(fromIndex, 1);
+    $scope.model.sounds.splice(toIndex, 0, sound);
+  }
 });
 

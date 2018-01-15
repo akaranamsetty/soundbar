@@ -28,16 +28,20 @@
 
 <ion-pane  ng-controller="SoundBoardCtrl">
 	<ion-header-bar class="bar-energized padding-top padding-bottom" >
+    <div class="buttons"><button class="button button-icon ion-ios-minus-outline" ng-click="model.showDelete = !model.showDelete; model.showMove = false"></button></div>
 		<h1 class="title" >My Friends</h1 >
+    <div class="buttons"><button class="button" ng-click="model.showMove = !model.showMove; model.showDelete = false">Move</button></div>
 	</ion-header-bar >
 	<ion-content >
 
-		<ion-list >
-			<ion-item class="item-thumbnail-left item-icon-right" ng-repeat="sound in model.sounds" ng-click="play(sound)">
+		<ion-list show-delete="model.showDelete" show-reorder="model.showMove">
+			<ion-item class="item-thumbnail-left item-icon-right item-remove-animate" ng-repeat="sound in model.sounds" ng-click="play(sound)">
         <img src="{{sound.image}}">
         <h2>{{sound.title}}</h2>
         <h2>{{sound.desc}}</h2>
         <i class="icon ion-volume-high"></i>
+        <ion-delete-button class="ion-minus-circled" ng-click="removeFromList($index)"></ion-delete-button>
+        <ion-reorder-button class="ion-navicon" on-reorder="reorderList(sound, $fromIndex, $toIndex)"></ion-reorder-button>
       </ion-item>
 		</ion-list >
 
